@@ -1,9 +1,11 @@
 import React from 'react';
-
+import classes from './Player.module.css';
 const player = (props) => {
     return (
         <div>
-            {props.name}
+            <div className={classes.playerData}> 
+            <img src={props.image}  alt={props.name}/>
+            {props.name}</div>
         </div>
     );
 }
