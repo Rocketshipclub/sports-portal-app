@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Player from '../../components/Players/Player/Player';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 class PlayerPage extends Component{
     state = {
@@ -17,9 +19,18 @@ class PlayerPage extends Component{
     render(){
         
         const players = this.state.players.map(player => {
-            return <Player key={player.playerId} image={player.image} name={player.name}/>
-        });
-        return <div>{players}</div>
+            return <Player key={player.playerId} 
+                image={player.image} 
+                name={player.name} 
+                stats={player.stats}
+                />
+        }).reverse(); // reverse the final array because firebase returns players in ascending order
+
+        return (<Container>
+            <Row>
+            {players}
+            </Row>
+        </Container>);
     };
 }
 
