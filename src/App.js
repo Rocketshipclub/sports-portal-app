@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import PlayerPage from './containers/PlayerPage/PlayerPage';
+import PlayersPage from './containers/PlayerPage/PlayersPage';
 
 class App extends Component {
 
   render() {
-    //this.getAllPlayersFromDatabase();
     return(
-      <PlayerPage />
+      <PlayersPage />
     );
   }
 }

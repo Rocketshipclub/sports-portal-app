@@ -15,10 +15,13 @@ class PlayerPage extends Component{
     }
 
     render(){
-        
         const players = this.state.players.map(player => {
-            return <Player key={player.playerId} image={player.image} name={player.name}/>
+            return <Player key={player.playerId} 
+                        image={player.image} 
+                        name={player.name}
+                    />
         });
+        
         return <div>{players}</div>
     };
 }
