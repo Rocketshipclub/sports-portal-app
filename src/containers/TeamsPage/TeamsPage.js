@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Player from '../../components/Players/Player/Player';
+import Team from '../../components/Teams/TeamCard/TeamCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-class PlayerPage extends Component{
+class TeamPage extends Component{
     state = {
         teams: [],
       }
@@ -17,20 +17,22 @@ class PlayerPage extends Component{
     }
 
     render(){
-        const players = this.state.teams.map(team => {
-            return <Player key={team.playerId} 
-                image={team.image} 
+        const teams = this.state.teams.map(team => {
+            return <Team key={team.teamId} 
+                image={team.logo} 
                 name={team.name} 
                 stats={team.stats}
                 />
         }).reverse(); // reverse the final array because firebase returns players in ascending order
 
-        return (<Container>
-            <Row>
-                {teams}
-            </Row>
-        </Container>);
+        return (
+            <Container>
+                <Row>
+                    {teams}
+                </Row>
+            </Container>
+        );
     };
 }
 
-export default PlayerPage;
+export default TeamPage;

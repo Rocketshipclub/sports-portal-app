@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Player from '../../components/Players/Player/Player';
+import Player from '../../components/Players/PlayerCard/PlayerCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
@@ -25,10 +25,9 @@ class PlayerPage extends Component{
                 />
         }).reverse(); // reverse the final array because firebase returns players in ascending order
 
-        return (<Container>
-            <Row>
-            {players}
-            </Row>
+        return (
+        <Container>
+            <Row>{players}</Row>
         </Container>);
     };
 }
