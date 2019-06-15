@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Player from '../../components/Players/PlayerCard/PlayerCard';
+import PlayerCard from '../../components/Players/PlayerCard/PlayerCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
 
-class PlayerPage extends Component{
+class PlayersPage extends Component{
     state = {
         players: [],
+        selectedPlayer: 'doublelift'
       }
     
     componentDidMount() {
@@ -16,14 +18,22 @@ class PlayerPage extends Component{
             });
     }
 
+    playerSelectedHandler = (id) => {
+        this.setState({selectedPlayer: id});
+    }
+
     render(){
         const players = this.state.players.map(player => {
-            return <Player key={player.playerId} 
+            return (
+                <Link style={{textDecoration:'none', color:'black'}} to={'/players/' + player.playerId}>
+                <PlayerCard 
                 image={player.image} 
                 name={player.name} 
                 stats={player.stats}
-                />
-        }).reverse(); // reverse the final array because firebase returns players in ascending order
+                playerId={player.playerId}
+                click={() => this.playerSelectedHandler}/>
+                </Link>
+        )}).reverse(); // reverse the final array because firebase returns players in ascending order
 
         return (
         <Container>
@@ -32,4 +42,4 @@ class PlayerPage extends Component{
     };
 }
 
-export default PlayerPage;
+export default PlayersPage;

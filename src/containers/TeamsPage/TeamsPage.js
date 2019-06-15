@@ -4,7 +4,7 @@ import Team from '../../components/Teams/TeamCard/TeamCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-class TeamPage extends Component{
+class TeamsPage extends Component{
     state = {
         teams: [],
       }
@@ -35,4 +35,4 @@ class TeamPage extends Component{
     };
 }
 
-export default TeamPage;
+export default TeamsPage;
