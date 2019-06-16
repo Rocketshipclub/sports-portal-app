@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 class PlayersPage extends Component{
     state = {
         players: [],
-        selectedPlayer: 'doublelift'
+        selectedPlayer: ''
       }
     
     componentDidMount() {
