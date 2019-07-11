@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
 const playercard = (props) => {
+
     return (
         <Link style={{textDecoration:'none', color:'black'}} to={'/players/' + props.playerId}>
                 <Card className={classes.card}>
@@ -16,9 +17,10 @@ const playercard = (props) => {
                     <Card.Subtitle>Kills: {props.stats.kills}</Card.Subtitle>
                     <Card.Subtitle>Deaths: {props.stats.deaths}</Card.Subtitle>
                     <Card.Subtitle>Assists: {props.stats.assists}</Card.Subtitle>
+                    <Card.Subtitle>KDA: {props.kda}</Card.Subtitle>
                 </Card.Body>
             </Card>
-            </Link>
+        </Link>
     );
 }
 

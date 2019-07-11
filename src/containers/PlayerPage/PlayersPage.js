@@ -20,9 +20,8 @@ class PlayersPage extends Component{
         axios.get('http://localhost:3001/api/players')
             .then(response => {
                 this.setState({players: response.data});
-            });
+        });
     }
-
     playerSelectedHandler = (id) => {
         this.setState({selectedPlayer: id});
     }
@@ -35,6 +34,7 @@ class PlayersPage extends Component{
         this.setState({ascending: !this.state.ascending});
     }
 
+    // TODO move sorting to external utils class
     sortByKills = () => {
         this.state.ascending ? 
             this.state.players.sort((playerA, playerB) => (playerA.stats.kills > playerB.stats.kills) ? 1 : -1) :
@@ -59,6 +59,12 @@ class PlayersPage extends Component{
             this.state.players.sort((playerA, playerB) => (playerA.team < playerB.team) ? 1 : -1)
     }
 
+    sortByKDA = () => {
+        this.state.ascending ?
+            this.state.players.sort((playerA, playerB) => (playerA.kda > playerB.kda) ? 1 : -1) :
+            this.state.players.sort((playerA, playerB) => (playerA.kda < playerB.kda) ? 1 : -1)
+    }
+
         
     render(){
         switch(this.state.sortBy){
@@ -74,6 +80,9 @@ class PlayersPage extends Component{
             case 'team':
                 this.sortByTeam();
                 break;
+            case 'kda':
+                this.sortByKDA();
+                break;
         }
 
         const players = this.state.players.map(player => {
@@ -84,6 +93,7 @@ class PlayersPage extends Component{
                 name={player.name} 
                 stats={player.stats}
                 playerId={player.playerId}
+                kda={player.kda}
                 click={() => this.playerSelectedHandler}/></Column>
         )}); // reverse the final array because firebase returns players in ascending order
         
@@ -91,7 +101,8 @@ class PlayersPage extends Component{
         <Container>
             Sort by <Button onClick={() => this.sortingHandler('kills')}>Kills</Button> 
             <Button onClick={() => this.sortingHandler('deaths')}>Deaths</Button> 
-            <Button onClick={() => this.sortingHandler('assists')}>Assists</Button> 
+            <Button onClick={() => this.sortingHandler('assists')}>Assists</Button>
+            <Button onClick={() => this.sortingHandler('kda')}>KDA</Button>
             <Button onClick={() => this.sortingHandler('team')}>Team</Button>
             <Form>
                 <Form.Check type="checkbox" label="Ascending" onChange={() => this.handleChange()}/> 

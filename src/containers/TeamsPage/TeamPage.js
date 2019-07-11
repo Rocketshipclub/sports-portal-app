@@ -17,7 +17,6 @@ class TeamPage extends Component {
         short: '',
         wins: '',
         losses: '',
-        loading: false,
     }
 
     componentDidMount() {
@@ -25,20 +24,19 @@ class TeamPage extends Component {
     }
 
     getData = async () => {
-        this.setState({ loading: true });
         let data = await axios.get('http://localhost:3001/api/teams/' + this.props.match.params.id);
 
         let playerData = await axios.get('http://localhost:3001/api/teams/' + this.props.match.params.id 
                         + '/players');
+        
         this.setState({
-                    name: data.data.name,
-                    logo: data.data.logo,
-                    short: data.data.stats.short,
-                    wins: data.data.stats.wins,
-                    losses: data.data.stats.losses,
-                    players: playerData.data
+                name: data.data.name,
+                logo: data.data.logo,
+                short: data.data.stats.short,
+                wins: data.data.stats.wins,
+                losses: data.data.stats.losses,
+                players: playerData.data
         });
-        this.setState({ loading: false })
     }
     
     render() {
