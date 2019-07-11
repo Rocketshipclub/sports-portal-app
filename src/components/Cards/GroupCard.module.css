@@ -1,0 +1,16 @@
+.card {
+    transition: all .2s ease-in-out;
+    margin-top: 28px;
+    display:inline-block;
+}
+
+.image{
+    max-width: auto;
+    max-height: 100%;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    font-weight:900;
+    border: 2px solid #e49f68;
+}

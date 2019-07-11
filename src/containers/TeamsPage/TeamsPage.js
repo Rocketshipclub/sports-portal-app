@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import TeamCard from '../../components/Teams/TeamCard/TeamCard';
+import TeamCard from '../../components/Cards/TeamCard/TeamCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
@@ -21,14 +21,13 @@ class TeamsPage extends Component{
     render(){
         const teams = this.state.teams.map(team => {
             return (
-                <Link style={{textDecoration:'none', color:'black'}} to={'/teams/' + team.teamId}>
                 <TeamCard key={team.teamId} 
                 image={team.logo} 
                 name={team.name} 
                 stats={team.stats}
                 short={team.short}
-                />
-                </Link>)
+                teamId={team.teamId}
+                />)
         }).reverse(); // reverse the final array because firebase returns players in ascending order
 
         return (

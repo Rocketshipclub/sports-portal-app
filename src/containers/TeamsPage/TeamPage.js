@@ -3,8 +3,11 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Column from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 
-import PlayerCard from '../../components/Players/PlayerCard/PlayerCard';
+import PlayerCard from '../../components/Cards/PlayerCard/PlayerCard';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Image from 'react-bootstrap/Image';
 
 class TeamPage extends Component {
     state = {
@@ -24,6 +27,7 @@ class TeamPage extends Component {
     getData = async () => {
         this.setState({ loading: true });
         let data = await axios.get('http://localhost:3001/api/teams/' + this.props.match.params.id);
+
         let playerData = await axios.get('http://localhost:3001/api/teams/' + this.props.match.params.id 
                         + '/players');
         this.setState({
@@ -40,26 +44,32 @@ class TeamPage extends Component {
     render() {
         let players = this.state.players.map(player => {
             return (
-                <PlayerCard 
+            <Column md={2}>
+                <PlayerCard
                 image={player.image} 
                 name={player.name} 
                 stats={player.stats}
-                playerId={player.playerId}/>
+                playerId={player.playerId}/></Column>
             )});
         return (
-            <div>
-                { this.state.loading === true ? 
-                ( <div>Loading...</div> ) : 
-                ( <Container>
-                        <Row>
-                            <Column s={6}>
-                                <h1>{this.state.name}</h1>
-                                <img src={this.state.logo} />
-                            </Column>
-                            {players}
-                        </Row>
-                  </Container> )}
-            </div>
+            <Container>
+                <Jumbotron>
+                <Row>
+                    <Column md={1} s={2}>
+                        <Image src={this.state.logo} fluid/>
+                    </Column>
+                    <h1>{this.state.name}</h1>
+                </Row>
+                </Jumbotron>
+                <Row>
+                    {players}
+                </Row>
+                <Row>
+                    <Column>
+                        <p>Load the team bio here</p>
+                    </Column>
+                </Row>
+            </Container>
         );
     }
 }

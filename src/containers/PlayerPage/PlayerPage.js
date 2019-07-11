@@ -3,7 +3,8 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Column from 'react-bootstrap/Col';
-
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Image from 'react-bootstrap/Image'
 class PlayerPage extends Component {
     state = {
         name: '',
@@ -32,15 +33,20 @@ class PlayerPage extends Component {
     render() {
         return (
             <Container>
+                <Jumbotron>
+                    <h1>{this.state.name}</h1>
+                </Jumbotron>
                 <Row>
-                    <Column s={6}>
-                        <h1>{this.state.name}</h1>
-                        <img src={this.state.image} />
+                    <Column s={8}>
+                        <Image src={this.state.image} fluid/>
                     </Column>
                     <Column s={2}>
                         <p>Kills: {this.state.kills}</p>
                         <p>Deaths: {this.state.deaths}</p>
                         <p>Assists: {this.state.assists}</p>
+                    </Column>
+                    <Column s={2}>
+                        <p>Bio bio bio bio bio</p>
                     </Column>
                 </Row>
             </Container>
