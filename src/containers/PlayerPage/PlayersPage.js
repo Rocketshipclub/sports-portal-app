@@ -27,7 +27,6 @@ class PlayersPage extends Component{
         axios.get('http://localhost:3001/api/players')
             .then(response => {
                 this.setState({players: response.data});
-
                 this.filterRoles();
         });
     }
