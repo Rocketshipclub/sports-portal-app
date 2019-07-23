@@ -3,10 +3,8 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Column from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom';
 
 import PlayerCard from '../../components/Cards/PlayerCard/PlayerCard';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 
 class TeamPage extends Component {
@@ -24,9 +22,9 @@ class TeamPage extends Component {
     }
 
     getData = async () => {
-        let data = await axios.get('http://localhost:3001/api/teams/' + this.props.match.params.id);
+        let data = await axios.get('/api/teams/' + this.props.match.params.id);
 
-        let playerData = await axios.get('http://localhost:3001/api/teams/' + this.props.match.params.id 
+        let playerData = await axios.get('/api/teams/' + this.props.match.params.id 
                         + '/players');
         
         this.setState({
@@ -51,21 +49,19 @@ class TeamPage extends Component {
             )});
         return (
             <Container>
-                <Jumbotron>
                 <Row>
                     <Column md={1} s={2}>
                         <Image src={this.state.logo} fluid/>
                     </Column>
                     <h1>{this.state.name}</h1>
                 </Row>
-                </Jumbotron>
-                <Row>
-                    {players}
-                </Row>
                 <Row>
                     <Column>
-                        <p>Load the team bio here</p>
+                        <p style={{padding:'15px'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </Column>
+                </Row>
+                <Row>
+                    {players}
                 </Row>
             </Container>
         );

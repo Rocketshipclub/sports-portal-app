@@ -24,7 +24,7 @@ class PlayersPage extends Component{
       }
     
     componentDidMount() {
-        axios.get('http://localhost:3001/api/players')
+        axios.get('/api/players')
             .then(response => {
                 this.setState({players: response.data});
                 this.filterRoles();
@@ -43,7 +43,7 @@ class PlayersPage extends Component{
         const changedRoles = this.state.roles;
         changedRoles[role] = !changedRoles[role];
         this.setState({roles: changedRoles});
-        this.state.filteredPlayers = this.filterRoles();
+        this.filterRoles();
     }
 
     // TODO move sorting to external utils class
@@ -82,7 +82,6 @@ class PlayersPage extends Component{
         const selectedRoles = Object.keys(this.state.roles).filter((key) => {
             return this.state.roles[key];
         });
-        console.log(selectedRoles);
         players = players.filter(player => selectedRoles.includes(player.role));
         this.setState({filteredPlayers: players})
     }
@@ -104,6 +103,8 @@ class PlayersPage extends Component{
                 break;
             case 'kda':
                 this.sortByKDA();
+                break;
+            default:
                 break;
         }
         let players = this.state.filteredPlayers.map(player => {

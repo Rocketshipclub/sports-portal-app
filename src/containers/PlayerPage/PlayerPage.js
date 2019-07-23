@@ -3,7 +3,6 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Column from 'react-bootstrap/Col';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image'
 import classes from './PlayerPage.module.css';
 
@@ -19,16 +18,14 @@ class PlayerPage extends Component {
         realName: '',
         nationality: '',
         age: 0,
-        team: '',
         teamLogo: '',
         teamName: '',
         role: '',
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/players/' + this.props.match.params.id)
+        axios.get('/api/players/' + this.props.match.params.id)
             .then(response => {
-                console.log(response.data.team)
                 this.setState({
                     name: response.data.name,
                     image: response.data.image,

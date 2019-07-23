@@ -4,15 +4,13 @@ import TeamCard from '../../components/Cards/TeamCard/TeamCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import { Link } from 'react-router-dom';
-
 class TeamsPage extends Component{
     state = {
         teams: [],
       }
     
     componentDidMount() {
-        axios.get('http://localhost:3001/api/teams')
+        axios.get('/api/teams')
             .then(response => {
                 this.setState({teams: response.data});
             });
